@@ -1,5 +1,5 @@
 # 队列
-
+> 母框架 https://github.com/mix-php/mix
 # 安装
 ```
 composer require mixplus-queue
@@ -36,3 +36,6 @@ string(8) "dispatch"
 string(8) "dispatch"
 string(8) "dispatch"
 ```
+
+# LICENSE
+Apache License Version 2.0, http://www.apache.org/licenses/
