@@ -5,7 +5,8 @@
     "license": "Apache2.0",
     "autoload": {
         "psr-4": {
-            "MixPlus\\Queue\\": "src/"
+            "MixPlus\\Queue\\": "src/",
+            "MixPlus\\Queue\\Test\\": "test/"
         }
     },
     "authors": [
@@ -14,5 +15,8 @@
             "email": "evanxian9@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "php": ">7.0.0",
+        "mix-plus/utils": "dev-main"
+    }
 }
