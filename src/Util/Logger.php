@@ -48,7 +48,7 @@ class Logger implements HandlerInterface
         switch (PHP_SAPI) {
             case 'cli':
             case 'cli-server':
-                file_put_contents("php://stdout", $message);
+//                file_put_contents("php://stdout", $message);
                 break;
         }
         return false;
