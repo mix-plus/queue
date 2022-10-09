@@ -2,7 +2,7 @@
     "name": "mix-plus/queue",
     "description": "queue",
     "type": "library",
-    "license": "Apache2.0",
+    "license": "Apache-2.0",
     "autoload": {
         "psr-4": {
             "MixPlus\\Queue\\": "src/",
@@ -18,7 +18,7 @@
     "require": {
         "php": ">=7.2.0",
         "mix-plus/utils": "dev-main",
-        "mix-plus/event": "dev-main",
+        "mix-plus/event": "dev-master",
         "monolog/monolog": "2.8.0"
     },
     "repositories": {
