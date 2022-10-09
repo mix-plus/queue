@@ -44,17 +44,17 @@ class QueueHandleListener implements ListenerInterface
 
             switch (true) {
                 case $event instanceof BeforeHandle:
-                    $this->logger->info(sprintf('[%s] Processing %s.', $date, $jobClass));
+                    $this->logger->info(sprintf('[before] Processing %s Time: %s', $jobClass, $date));
                     break;
                 case $event instanceof AfterHandle:
-                    $this->logger->info(sprintf('[%s] Processed %s.', $date, $jobClass));
+                    $this->logger->info(sprintf('[after] Processed %s Time: %s', $jobClass, $date));
                     break;
                 case $event instanceof FailedHandle:
-                    $this->logger->error(sprintf('[%s] Failed %s.', $date, $jobClass));
-                    $this->logger->error((string) $event->getThrowable());
+                    $this->logger->error(sprintf('[failed] Failed %s Time: %s', $jobClass, $date));
+                    $this->logger->error((string)$event->getThrowable());
                     break;
                 case $event instanceof RetryHandle:
-                    $this->logger->warning(sprintf('[%s] Retried %s.', $date, $jobClass));
+                    $this->logger->warning(sprintf('[retry] Retried %s Time: %s', $jobClass, $date));
                     break;
             }
         }

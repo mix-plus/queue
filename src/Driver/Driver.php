@@ -2,11 +2,15 @@
 
 namespace MixPlus\Queue\Driver;
 
+use MixPlus\Event\EventDispatcher;
+use MixPlus\Event\ListenerProviderFactory;
 use MixPlus\Queue\Event\AfterHandle;
 use MixPlus\Queue\Event\BeforeHandle;
 use MixPlus\Queue\Event\FailedHandle;
 use MixPlus\Queue\Event\QueueLength;
 use MixPlus\Queue\Event\RetryHandle;
+use MixPlus\Queue\Listener\QueueHandleListener;
+use MixPlus\Queue\Listener\QueueLengthListener;
 use MixPlus\Queue\MessageInterface;
 use MixPlus\Queue\Util\Logger;
 use MixPlus\Queue\Util\Packer;
@@ -42,6 +46,12 @@ abstract class Driver implements DriverInterface
         $this->packer = new Packer();
         $this->config = $config;
         $this->logger = Logger::instance();
+        $provider = new ListenerProviderFactory;
+        $listeners = $provider([
+            QueueHandleListener::class,
+            QueueLengthListener::class,
+        ]);
+        $this->event = new EventDispatcher($listeners, $this->logger);
     }
 
     public function consume(): void
