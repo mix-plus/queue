@@ -20,15 +20,5 @@
         "mix-plus/utils": "dev-main",
         "mix-plus/event": "dev-master",
         "monolog/monolog": "2.8.0"
-    },
-    "repositories": {
-        "mix-plus/utils": {
-            "type": "path",
-            "url": "../utils"
-        },
-        "mix-plus/event": {
-            "type": "path",
-            "url": "../event"
-        }
     }
 }
