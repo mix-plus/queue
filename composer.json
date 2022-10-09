@@ -17,8 +17,9 @@
     ],
     "require": {
         "php": ">=7.2.0",
-        "mix-plus/utils": "dev-main",
-        "mix-plus/event": "dev-master",
+        "psr/log": "^1.1",
+        "mix-plus/utils": "^0.1",
+        "mix-plus/event": "^0.1",
         "monolog/monolog": "2.8.0"
     }
 }
