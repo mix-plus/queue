@@ -45,7 +45,7 @@ class RedisDriver extends Driver
         $this->timeout = 5;
         $this->retrySeconds = 10;
         $this->handleTimeout = 10;
-        $this->channel = make(ChannelConfig::class, ['channel' => 'mix-queue']);
+        $this->channel = make(ChannelConfig::class, ['channel' => $config['default']]);
     }
 
     private function initRedis()

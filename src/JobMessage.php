@@ -50,7 +50,10 @@ class JobMessage implements MessageInterface
 
     public function attempts(): bool
     {
-        return $this->job->getMaxAttempts() > $this->attempts++;
+        if ($this->job->getMaxAttempts() > $this->attempts++) {
+            return true;
+        }
+        return false;
     }
 
     public function getAttempts(): int
