@@ -23,12 +23,12 @@ class ChannelDriver extends Driver
         // TODO: Implement pop() method.
     }
 
-    public function ack(mixed $data): bool
+    public function ack($data): bool
     {
         // TODO: Implement ack() method.
     }
 
-    public function fail(mixed $data): bool
+    public function fail($data): bool
     {
         // TODO: Implement fail() method.
     }
@@ -48,7 +48,7 @@ class ChannelDriver extends Driver
         // TODO: Implement info() method.
     }
 
-    protected function remove(mixed $data): bool
+    protected function remove($data): bool
     {
         // TODO: Implement remove() method.
     }

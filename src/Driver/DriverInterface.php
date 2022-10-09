@@ -24,12 +24,12 @@ interface DriverInterface
     /**
      * Ack a job.
      */
-    public function ack(mixed $data): bool;
+    public function ack($data): bool;
 
     /**
      * Push a job to failed queue.
      */
-    public function fail(mixed $data): bool;
+    public function fail($data): bool;
 
     /**
      * Consume jobs from a queue.

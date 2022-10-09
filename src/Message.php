@@ -8,8 +8,14 @@ use Serializable;
 
 class Message implements MessageInterface, Serializable
 {
-    protected JobInterface $job;
-    protected int $attempts = 0;
+    /**
+     * @var JobInterface
+     */
+    protected $job;
+    /**
+     * @var int
+     */
+    protected $attempts = 0;
 
 
     public function __serialize(): array

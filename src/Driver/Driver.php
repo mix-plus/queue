@@ -2,19 +2,46 @@
 
 namespace MixPlus\Queue\Driver;
 
+use MixPlus\Queue\Event\AfterHandle;
+use MixPlus\Queue\Event\BeforeHandle;
+use MixPlus\Queue\Event\FailedHandle;
+use MixPlus\Queue\Event\QueueLength;
+use MixPlus\Queue\Event\RetryHandle;
 use MixPlus\Queue\MessageInterface;
+use MixPlus\Queue\Util\Logger;
 use MixPlus\Queue\Util\Packer;
+use Psr\EventDispatcher\EventDispatcherInterface;
 use Throwable;
 
 abstract class Driver implements DriverInterface
 {
-    protected Packer $packer;
+    /**
+     * @var Packer
+     */
+    protected $packer;
 
-    protected int $lengthCheckCount = 500;
+    /**
+     * @var EventDispatcherInterface
+     */
+    protected $event;
 
-    public function __construct()
+    /**
+     * @var int
+     */
+    protected $lengthCheckCount = 500;
+
+    /**
+     * @var array
+     */
+    protected $config;
+
+    protected $logger;
+
+    public function __construct($config = [])
     {
         $this->packer = new Packer();
+        $this->config = $config;
+        $this->logger = Logger::instance();
     }
 
     public function consume(): void
@@ -29,7 +56,7 @@ abstract class Driver implements DriverInterface
                 }
                 $callback = $this->getCallback($data, $message);
 
-                do_parallel([$callback]);
+                call($callback);
 
                 if ($messageCount % $this->lengthCheckCount === 0) {
                     $this->checkQueueLength();
@@ -38,7 +65,7 @@ abstract class Driver implements DriverInterface
                     break;
                 }
             } catch (Throwable $e) {
-                var_dump((string)$e);
+                $this->logger->error((string)$e);
             } finally {
                 ++$messageCount;
             }
@@ -50,22 +77,19 @@ abstract class Driver implements DriverInterface
         return function () use ($data, $message) {
             try {
                 if ($message instanceof MessageInterface) {
-//                    $this->event && $this->event->dispatch(new BeforeHandle($message));
+                    $this->event && $this->event->dispatch(new BeforeHandle($message));
                     $message->job()->handle();
-//                    $this->event && $this->event->dispatch(new AfterHandle($message));
+                    $this->event && $this->event->dispatch(new AfterHandle($message));
                 }
 
                 $this->ack($data);
             } catch (Throwable $ex) {
-                var_dump((string)$ex);
                 if (isset($message, $data)) {
                     if ($message->attempts() && $this->remove($data)) {
-//                        $this->event && $this->event->dispatch(new RetryHandle($message, $ex));
-                        var_dump('retry');
+                        $this->event && $this->event->dispatch(new RetryHandle($message, $ex));
                         $this->retry($message);
                     } else {
-//                        $this->event && $this->event->dispatch(new FailedHandle($message, $ex));
-                        var_dump('fail');
+                        $this->event && $this->event->dispatch(new FailedHandle($message, $ex));
                         $this->fail($data);
                     }
                 }
@@ -76,7 +100,7 @@ abstract class Driver implements DriverInterface
     /**
      * Remove data from reserved queue.
      */
-    abstract protected function remove(mixed $data): bool;
+    abstract protected function remove($data): bool;
 
     /**
      * Handle a job again some seconds later.
@@ -87,8 +111,7 @@ abstract class Driver implements DriverInterface
     {
         $info = $this->info();
         foreach ($info as $key => $value) {
-            var_dump('dispatch');
-//            $this->event && $this->event->dispatch(new QueueLength($this, $key, $value));
+            $this->event && $this->event->dispatch(new QueueLength($this, $key, $value));
         }
     }
 }

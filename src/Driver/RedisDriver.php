@@ -15,27 +15,32 @@ class RedisDriver extends Driver
      */
     protected $redis;
 
-    protected ChannelConfig $channel;
+    /**
+     * @var ChannelConfig
+     */
+    protected $channel;
 
     /**
      * Max polling time.
+     * @var int
      */
-    protected int $timeout;
+    protected $timeout;
 
     /**
      * Retry delay time.
+     * @var array|int
      */
-    protected array|int $retrySeconds;
+    protected $retrySeconds;
 
     /**
      * Handle timeout.
+     * @var int
      */
-    protected int $handleTimeout;
+    protected $handleTimeout;
 
-    public function __construct()
+    public function __construct($config = [])
     {
-        parent::__construct();
-
+        parent::__construct($config);
         $this->initRedis();
         $this->timeout = 5;
         $this->retrySeconds = 10;
@@ -55,19 +60,22 @@ class RedisDriver extends Driver
             'timeout' => 0,
             'persistent' => false,
         ];
+        if (!empty($this->config)) {
+            $this->config = array_merge($options, $this->config);
+        }
         if (!extension_loaded('redis')) {
             throw new RuntimeException('redis扩展未安装');
         }
-        $func = $options['persistent'] ? 'pconnect' : 'connect';
+        $func = $this->config['persistent'] ? 'pconnect' : 'connect';
         $this->redis = new Redis();
-        $this->redis->{$func}($options['host'], $options['port'], $options['timeout']);
+        $this->redis->{$func}($this->config['host'], $this->config['port'], $this->config['timeout']);
 
-        if ($options['password'] != '') {
-            $this->redis->auth($options['password']);
+        if ($this->config['password'] != '') {
+            $this->redis->auth($this->config['password']);
         }
 
-        if ($options['select'] != 0) {
-            $this->redis->select($options['select']);
+        if ($this->config['select'] != 0) {
+            $this->redis->select($this->config['select']);
         }
     }
 
@@ -128,17 +136,17 @@ class RedisDriver extends Driver
         }
     }
 
-    public function ack(mixed $data): bool
+    public function ack($data): bool
     {
         return $this->remove($data);
     }
 
-    protected function remove(mixed $data): bool
+    protected function remove($data): bool
     {
         return $this->redis->zrem($this->channel->getReserved(), (string)$data) > 0;
     }
 
-    public function fail(mixed $data): bool
+    public function fail($data): bool
     {
         if ($this->remove($data)) {
             return (bool)$this->redis->lPush($this->channel->getFailed(), (string)$data);

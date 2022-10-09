@@ -7,9 +7,15 @@ use MixPlus\Queue\Contract\UnCompressInterface;
 
 class JobMessage implements MessageInterface
 {
-    protected JobInterface $job;
+    /**
+     * @var JobInterface
+     */
+    protected $job;
 
-    protected int $attempts = 0;
+    /**
+     * @var int
+     */
+    protected $attempts = 0;
 
     public function __construct($job)
     {
@@ -44,10 +50,7 @@ class JobMessage implements MessageInterface
 
     public function attempts(): bool
     {
-        if ($this->job->getMaxAttempts() > $this->attempts++) {
-            return true;
-        }
-        return false;
+        return $this->job->getMaxAttempts() > $this->attempts++;
     }
 
     public function getAttempts(): int

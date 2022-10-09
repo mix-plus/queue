@@ -6,32 +6,40 @@ use RuntimeException;
 
 class ChannelConfig
 {
-    protected string $channel;
+    /**
+     * @var string
+     */
+    protected $channel;
 
     /**
      * Key for waiting message.
+     * @var string
      */
-    protected string $waiting;
+    protected $waiting;
 
     /**
      * Key for reserved message.
+     * @var string
      */
-    protected string $reserved;
+    protected $reserved;
 
     /**
      * Key for reserve timeout message.
+     * @var string
      */
-    protected string $timeout;
+    protected $timeout;
 
     /**
      * Key for delayed message.
+     * @var string
      */
-    protected string $delayed;
+    protected $delayed;
 
     /**
      * Key for failed message.
+     * @var string
      */
-    protected string $failed;
+    protected $failed;
 
     public function __construct(string $channel)
     {
@@ -57,7 +65,7 @@ class ChannelConfig
         return $this->channel;
     }
 
-    public function setChannel(string $channel): static
+    public function setChannel(string $channel)
     {
         $this->channel = $channel;
         return $this;
@@ -68,7 +76,7 @@ class ChannelConfig
         return $this->waiting;
     }
 
-    public function setWaiting(string $waiting): static
+    public function setWaiting(string $waiting)
     {
         $this->waiting = $waiting;
         return $this;
@@ -79,7 +87,7 @@ class ChannelConfig
         return $this->reserved;
     }
 
-    public function setReserved(string $reserved): static
+    public function setReserved(string $reserved)
     {
         $this->reserved = $reserved;
         return $this;
@@ -90,7 +98,7 @@ class ChannelConfig
         return $this->timeout;
     }
 
-    public function setTimeout(string $timeout): static
+    public function setTimeout(string $timeout)
     {
         $this->timeout = $timeout;
         return $this;
@@ -101,7 +109,7 @@ class ChannelConfig
         return $this->delayed;
     }
 
-    public function setDelayed(string $delayed): static
+    public function setDelayed(string $delayed)
     {
         $this->delayed = $delayed;
         return $this;
@@ -112,7 +120,7 @@ class ChannelConfig
         return $this->failed;
     }
 
-    public function setFailed(string $failed): static
+    public function setFailed(string $failed)
     {
         $this->failed = $failed;
         return $this;

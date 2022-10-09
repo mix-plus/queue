@@ -7,14 +7,17 @@ use MixPlus\Queue\Contract\UnCompressInterface;
 
 abstract class Job implements JobInterface
 {
-    protected int $maxAttempts = 0;
+    /**
+     * @var int
+     */
+    protected $maxAttempts = 0;
 
     public function getMaxAttempts(): int
     {
         return $this->maxAttempts;
     }
 
-    public function uncompress(): static
+    public function uncompress()
     {
         foreach ($this as $key => $value) {
             if ($value instanceof UnCompressInterface) {
@@ -25,7 +28,7 @@ abstract class Job implements JobInterface
         return $this;
     }
 
-    public function compress(): static
+    public function compress()
     {
         foreach ($this as $key => $value) {
             if ($value instanceof CompressInterface) {
