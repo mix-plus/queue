@@ -38,9 +38,9 @@ class RedisDriver extends Driver
      */
     protected $handleTimeout;
 
-    public function __construct($config = [])
+    public function __construct($config = [], $listener = [])
     {
-        parent::__construct($config);
+        parent::__construct($config, $listener);
         $this->initRedis();
         $this->timeout = 5;
         $this->retrySeconds = 10;

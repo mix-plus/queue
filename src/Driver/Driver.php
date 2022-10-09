@@ -41,16 +41,13 @@ abstract class Driver implements DriverInterface
 
     protected $logger;
 
-    public function __construct($config = [])
+    public function __construct($config = [], $listener = [])
     {
         $this->packer = new Packer();
         $this->config = $config;
         $this->logger = Logger::instance();
         $provider = new ListenerProviderFactory;
-        $listeners = $provider([
-            QueueHandleListener::class,
-            QueueLengthListener::class,
-        ]);
+        $listeners = $provider($listener);
         $this->event = new EventDispatcher($listeners, $this->logger);
     }
 
