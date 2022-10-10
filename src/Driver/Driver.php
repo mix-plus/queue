@@ -9,8 +9,6 @@ use MixPlus\Queue\Event\BeforeHandle;
 use MixPlus\Queue\Event\FailedHandle;
 use MixPlus\Queue\Event\QueueLength;
 use MixPlus\Queue\Event\RetryHandle;
-use MixPlus\Queue\Listener\QueueHandleListener;
-use MixPlus\Queue\Listener\QueueLengthListener;
 use MixPlus\Queue\MessageInterface;
 use MixPlus\Queue\Util\Logger;
 use MixPlus\Queue\Util\Packer;
@@ -63,7 +61,11 @@ abstract class Driver implements DriverInterface
                 }
                 $callback = $this->getCallback($data, $message);
 
-                call($callback);
+                if (extension_loaded('swoole')) {
+                    do_parallel([$callback]);
+                } else {
+                    call($callback);
+                }
 
                 if ($messageCount % $this->lengthCheckCount === 0) {
                     $this->checkQueueLength();
