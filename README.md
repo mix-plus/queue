@@ -1,10 +1,31 @@
 # 队列
-> 母框架 https://github.com/mix-php/mix
+通用常驻内存队列支持swoole非swoole
 # 安装
 ```
 composer require mixplus-queue
 ```
+# 运行
+```php
+// 创建实例
+$queue = new RedisDriver([
+                'expire' => 60,
+                'default' => 'default',
+                'host' => '127.0.0.1',
+                'port' => 6379,
+                'password' => '',
+                'select' => 0,
+                'timeout' => 0,
+                'persistent' => false,
+            ], [
+                QueueAfterHandleListener::class,
+                QueueBeforeHandleListener::class,
+                QueueFailedHandleListener::class,
+                QueueRetryHandleListener::class,
+            ]);
 
+// 启动消费者
+$queue->consume();
+```
 # 测试
 > 测试代码 ./test
 ```
