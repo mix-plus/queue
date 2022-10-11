@@ -2,7 +2,7 @@
 通用常驻内存队列支持swoole非swoole
 # 安装
 ```
-composer require mixplus-queue
+composer require mix-plus/queue
 ```
 # 运行
 ```php
