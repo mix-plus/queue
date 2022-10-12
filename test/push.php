@@ -2,8 +2,6 @@
 
 use MixPlus\Queue\Driver\RedisDriver;
 use MixPlus\Queue\Test\TestJob;
-use MixPlus\Queue\Util\Logger;
-
 
 require dirname(__DIR__) . '/./vendor/autoload.php';
 
@@ -18,19 +16,11 @@ $queue = (new RedisDriver([
     'persistent' => true,
 ]));
 
-//$i = 10;
-//$r = [];
-//while ($i--) {
-//    $r[] = $queue->push(new TestJob($i), $i);
-//    Logger::instance()->info($i);
-//}
-
-$queue->consume();
-//go(function () use($queue) {
-//    $queue->consume();
-//});
-
-
+$i = 0;
+while (true) {
+    $i++;
+    $queue->push(new TestJob($i), 10);
+}
 
 
 
