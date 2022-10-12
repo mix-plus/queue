@@ -1,5 +1,5 @@
 # 队列
-通用常驻内存队列支持 Swoole 以及 Swoole
+通用常驻内存队列支持 Swoole 以及 非Swoole
 # 安装
 ```
 composer require mix-plus/queue
