@@ -21,7 +21,7 @@ $queue = (new RedisDriver([
 $i = 10;
 $r = [];
 while ($i--) {
-    $r[] = $queue->push(new TestJob($i), $i);
+    $r[] = $queue->push(new TestJob($i), 0);
     Logger::instance()->info($i);
 }
 
