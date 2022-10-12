@@ -62,7 +62,9 @@ abstract class Driver implements DriverInterface
                 $callback = $this->getCallback($data, $message);
 
                 if (extension_loaded('swoole')) {
-                    do_parallel([$callback]);
+                    go(function () use ($callback) {
+                        call($callback);
+                    });
                 } else {
                     call($callback);
                 }
