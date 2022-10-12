@@ -1,8 +1,8 @@
 # 队列
-通用常驻内存队列支持swoole非swoole
+通用常驻内存队列支持 Swoole 以及 Swoole
 # 安装
 ```
-composer require mixplus-queue
+composer require mix-plus/queue
 ```
 # 运行
 ```php
@@ -17,17 +17,19 @@ $queue = new RedisDriver([
                 'timeout' => 0,
                 'persistent' => false,
             ], [
-                QueueAfterHandleListener::class,
-                QueueBeforeHandleListener::class,
-                QueueFailedHandleListener::class,
-                QueueRetryHandleListener::class,
+                QueueHandleListener::class,
+                QueueLengthListener::class,
+                ReloadChannelListener::class,
             ]);
 
 // 启动消费者
+// Swoole 环境可以协程启动 go $queue->consume();
 $queue->consume();
 ```
 # 测试
-> 测试代码 ./test
+> [测试代码](test/queue.php)
+
+`php test/queue.php`
 ```
 array(10) {
   [0]=>
