@@ -6,11 +6,19 @@ class Packer implements PackerInterface
 {
     public function pack($data)
     {
-        return serialize($data);
+        try {
+            return serialize($data);
+        } catch (\Throwable $e) {
+            return null;
+        }
     }
 
     public function unpack($data)
     {
-        return unserialize($data);
+        try {
+            return unserialize($data);
+        } catch (\Throwable $e) {
+            return null;
+        }
     }
 }
