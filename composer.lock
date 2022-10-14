@@ -4,15 +4,24 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "164496c10300b997a41df39de8e5960b",
+    "content-hash": "b8d63a0e7a115a0f6e0aa223cf887dbe",
     "packages": [
         {
             "name": "mix-plus/event",
-            "version": "dev-main",
+            "version": "0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mixphp-plus/event.git",
+                "reference": "dbadf3b7a1196bfb616382c33c83205564cccdae"
+            },
             "dist": {
-                "type": "path",
-                "url": "../event",
-                "reference": "823c038b6e6e9a203b8a0b53af5c65bf8466389c"
+                "type": "zip",
+                "url": "https://api.github.com/repos/mixphp-plus/event/zipball/dbadf3b7a1196bfb616382c33c83205564cccdae",
+                "reference": "dbadf3b7a1196bfb616382c33c83205564cccdae",
+                "shasum": ""
+            },
+            "require": {
+                "psr/event-dispatcher": "1.0.0"
             },
             "type": "library",
             "autoload": {
@@ -20,8 +29,9 @@
                     "MixPlus\\Event\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "Apache2.0"
+                "Apache-2.0"
             ],
             "authors": [
                 {
@@ -30,29 +40,38 @@
                 }
             ],
             "description": "event",
-            "transport-options": {
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/mixphp-plus/event/issues",
+                "source": "https://github.com/mixphp-plus/event/tree/0.1.1"
+            },
+            "time": "2022-10-09T06:38:36+00:00"
         },
         {
             "name": "mix-plus/utils",
-            "version": "dev-main",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mixphp-plus/utils.git",
+                "reference": "184ebad20e90f852484786a433ff5f1683dba2cf"
+            },
             "dist": {
-                "type": "path",
-                "url": "../utils",
-                "reference": "27b6d3be81d9d4d3d4b96db1225567acaacca638"
+                "type": "zip",
+                "url": "https://api.github.com/repos/mixphp-plus/utils/zipball/184ebad20e90f852484786a433ff5f1683dba2cf",
+                "reference": "184ebad20e90f852484786a433ff5f1683dba2cf",
+                "shasum": ""
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "MixPlus\\Utils\\": "src/"
-                },
                 "files": [
                     "src/Functions.php"
-                ]
+                ],
+                "psr-4": {
+                    "MixPlus\\Utils\\": "src/"
+                }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "Apache2.0"
+                "Apache-2.0"
             ],
             "authors": [
                 {
@@ -60,9 +79,111 @@
                     "email": "evanxian9@gmail.com"
                 }
             ],
-            "transport-options": {
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/mixphp-plus/utils/issues",
+                "source": "https://github.com/mixphp-plus/utils/tree/0.1.0"
+            },
+            "time": "2022-10-09T06:37:43+00:00"
+        },
+        {
+            "name": "mix/object-pool",
+            "version": "v3.0.27",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mix-php/object-pool.git",
+                "reference": "6eadac033504eac60d303569038a8cc5fc7fd6b2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mix-php/object-pool/zipball/6eadac033504eac60d303569038a8cc5fc7fd6b2",
+                "reference": "6eadac033504eac60d303569038a8cc5fc7fd6b2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mix\\ObjectPool\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "liu,jian",
+                    "email": "coder.keda@gmail.com"
+                }
+            ],
+            "description": "Swoole-based object pool, connection pool",
+            "homepage": "https://openmix.org/mix-php",
+            "keywords": [
+                "connection-pool",
+                "mix",
+                "object-pool",
+                "swoole"
+            ],
+            "support": {
+                "issues": "https://github.com/mix-php/object-pool/issues",
+                "source": "https://github.com/mix-php/object-pool/tree/v3.0.27"
+            },
+            "time": "2021-07-23T11:12:42+00:00"
+        },
+        {
+            "name": "mix/redis",
+            "version": "v3.0.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mix-php/redis.git",
+                "reference": "3421f95fbe762bf5ddacb9dc67f5b93ad7f16e3f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mix-php/redis/zipball/3421f95fbe762bf5ddacb9dc67f5b93ad7f16e3f",
+                "reference": "3421f95fbe762bf5ddacb9dc67f5b93ad7f16e3f",
+                "shasum": ""
+            },
+            "require": {
+                "ext-redis": "*",
+                "mix/object-pool": "~3.0.0",
+                "php": ">=7.2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mix\\Redis\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "liu,jian",
+                    "email": "coder.keda@gmail.com"
+                }
+            ],
+            "description": "Coroutine redis library based on Swoole, built-in connection pool",
+            "homepage": "https://openmix.org/mix-php",
+            "keywords": [
+                "connection-pool",
+                "coroutine",
+                "mix",
+                "redis",
+                "swoole"
+            ],
+            "support": {
+                "issues": "https://github.com/mix-php/redis/issues",
+                "source": "https://github.com/mix-php/redis/tree/v3.0.10"
+            },
+            "time": "2021-12-15T08:02:11+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -76,13 +197,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Seldaek/monolog/zipball/720488632c590286b88b80e62aa3d3d551ad4a50",
                 "reference": "720488632c590286b88b80e62aa3d3d551ad4a50",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
+                "shasum": ""
             },
             "require": {
                 "php": ">=7.2",
@@ -173,6 +288,56 @@
             "time": "2022-07-24T11:55:47+00:00"
         },
         {
+            "name": "psr/event-dispatcher",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/event-dispatcher.git",
+                "reference": "dbefd12671e8a14ec7f180cab83036ed26714bb0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/event-dispatcher/zipball/dbefd12671e8a14ec7f180cab83036ed26714bb0",
+                "reference": "dbefd12671e8a14ec7f180cab83036ed26714bb0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\EventDispatcher\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Standard interfaces for event handling.",
+            "keywords": [
+                "events",
+                "psr",
+                "psr-14"
+            ],
+            "support": {
+                "issues": "https://github.com/php-fig/event-dispatcher/issues",
+                "source": "https://github.com/php-fig/event-dispatcher/tree/1.0.0"
+            },
+            "time": "2019-01-08T18:20:26+00:00"
+        },
+        {
             "name": "psr/log",
             "version": "1.1.4",
             "source": {
@@ -184,13 +349,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/php-fig/log/zipball/d49695b909c3b7628b6289db5479a1c204601f11",
                 "reference": "d49695b909c3b7628b6289db5479a1c204601f11",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
+                "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
@@ -229,13 +388,53 @@
             "time": "2021-05-03T11:20:27+00:00"
         }
     ],
-    "packages-dev": [],
+    "packages-dev": [
+        {
+            "name": "swoole/ide-helper",
+            "version": "5.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/swoole/ide-helper.git",
+                "reference": "939352ede9e8cddce96897d18b4fbd0c1e2110a3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/swoole/ide-helper/zipball/939352ede9e8cddce96897d18b4fbd0c1e2110a3",
+                "reference": "939352ede9e8cddce96897d18b4fbd0c1e2110a3",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Team Swoole",
+                    "email": "team@swoole.com"
+                }
+            ],
+            "description": "IDE help files for Swoole.",
+            "support": {
+                "issues": "https://github.com/swoole/ide-helper/issues",
+                "source": "https://github.com/swoole/ide-helper/tree/5.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://gitee.com/swoole/swoole?donate=true",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/swoole",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-08-10T05:32:06+00:00"
+        }
+    ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "mix-plus/utils": 20,
-        "mix-plus/event": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

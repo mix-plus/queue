@@ -20,6 +20,10 @@
         "psr/log": "^1.1",
         "mix-plus/utils": "^0.1",
         "mix-plus/event": "^0.1",
-        "monolog/monolog": "^2.3"
+        "monolog/monolog": "^2.3",
+        "mix/redis": "^3.0"
+    },
+    "require-dev": {
+        "swoole/ide-helper": "^5.0"
     }
 }

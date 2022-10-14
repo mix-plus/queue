@@ -8,14 +8,12 @@ composer require mix-plus/queue
 ```php
 // 创建实例
 $queue = new RedisDriver([
-                'expire' => 60,
                 'default' => 'default',
                 'host' => '127.0.0.1',
                 'port' => 6379,
                 'password' => '',
                 'select' => 0,
                 'timeout' => 0,
-                'persistent' => false,
             ], [
                 QueueHandleListener::class,
                 QueueLengthListener::class,

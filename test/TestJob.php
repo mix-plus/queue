@@ -16,8 +16,8 @@ class TestJob extends Job
 
     public function handle()
     {
-        var_dump('延迟2s');
-        \Swoole\Coroutine::sleep(2);
+//        var_dump('延迟2s');
+//        \Swoole\Coroutine::sleep(2);
 //        sleep(2);
 //        if ($this->id == 5) {
 //            throw new \RuntimeException("id = 5");

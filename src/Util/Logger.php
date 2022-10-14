@@ -35,7 +35,7 @@ class Logger implements HandlerInterface
      */
     public function isHandling(array $record): bool
     {
-        return $record['level'] >= \Monolog\Logger::DEBUG;
+        return $record['level'] >= \Monolog\Logger::INFO;
     }
 
     /**
