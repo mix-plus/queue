@@ -5,13 +5,12 @@ namespace MixPlus\Queue\Driver;
 use MixPlus\Queue\JobInterface;
 use MixPlus\Queue\JobMessage;
 use MixPlus\Queue\MessageInterface;
-use Redis;
 use RuntimeException;
 
 class RedisDriver extends Driver
 {
     /**
-     * @var Redis
+     * @var \Mix\Redis\Redis
      */
     protected $redis;
 
@@ -45,20 +44,19 @@ class RedisDriver extends Driver
         $this->timeout = 5;
         $this->retrySeconds = 10;
         $this->handleTimeout = 10;
-        $this->channel = make(ChannelConfig::class, ['channel' => $config['default'] . ':queues']);
+        $default = $config['default'] ?? 'default';
+        $this->channel = make(ChannelConfig::class, ['channel' => $default . ':queues']);
     }
 
     private function initRedis()
     {
         $options = [
-            'expire' => 60,
             'default' => 'default',
             'host' => '127.0.0.1',
             'port' => '6379',
             'password' => '',
             'select' => 0,
             'timeout' => 0,
-            'persistent' => false,
         ];
         if (!empty($this->config)) {
             $this->config = array_merge($options, $this->config);
@@ -66,17 +64,11 @@ class RedisDriver extends Driver
         if (!extension_loaded('redis')) {
             throw new RuntimeException('redis扩展未安装');
         }
-        $func = $this->config['persistent'] ? 'pconnect' : 'connect';
-        $this->redis = new Redis();
-        $this->redis->{$func}($this->config['host'], $this->config['port'], $this->config['timeout']);
-
-        if ($this->config['password'] != '') {
-            $this->redis->auth($this->config['password']);
-        }
-
-        if ($this->config['select'] != 0) {
-            $this->redis->select($this->config['select']);
-        }
+        $this->redis = new \Mix\Redis\Redis($this->config['host'],
+            $this->config['port'],
+            $this->config['password'],
+            $this->config['select'] ?? $this->config['db'] ?? 0,
+            $this->config['timeout'] ?? 0);
     }
 
     public function push(JobInterface $job, int $delay = 0): bool
