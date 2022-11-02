@@ -1,12 +1,14 @@
-# 队列
-通用常驻内存队列支持 Swoole 以及 非Swoole
-# 安装
+# queue
+Generic resident memory queue
+Swoole support
+
+# install
 ```
 composer require mix-plus/queue
 ```
-# 运行
+# run
 ```php
-// 创建实例
+// create queue
 $queue = new RedisDriver([
                 'default' => 'default',
                 'host' => '127.0.0.1',
@@ -20,12 +22,12 @@ $queue = new RedisDriver([
                 ReloadChannelListener::class,
             ]);
 
-// 启动消费者
-// Swoole 环境可以协程启动 go $queue->consume();
+// start consume
+// Swoole is coroutine run  go $queue->consume();
 $queue->consume();
 ```
-# 测试
-> [测试代码](test/queue.php)
+# test
+> [code](test/queue.php)
 
 `php test/queue.php`
 ```
